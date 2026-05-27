@@ -1,1 +1,492 @@
-[]
+[
+  [
+    "// are replaced at build time.",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "// @ts-nocheck",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "/* global [{\"env\":\"prestable\",\"hostRe\":\"\\\\.dsp\\\\.\"},{\"env\":\"testing\",\"hostRe\":\"\\\\.dst\\\\.\"},{\"env\":\"production\",\"hostRe\":\"disk\\\\.yandex\\\\.\"},{\"env\":\"production\",\"hostRe\":\"yadi\\\\.sk\"},{\"env\":\"ON_PREM\",\"hostRe\":\".*\"}] */",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "(function () {",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    const clckUrl = 'https://yandex.ru/clck/click'",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    const project = 'disk-public'",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    const page = '500'",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    const envDefault = 'production'",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    const envRules = [{\"env\":\"prestable\",\"hostRe\":\"\\\\.dsp\\\\.\"},{\"env\":\"testing\",\"hostRe\":\"\\\\.dst\\\\.\"},{\"env\":\"production\",\"hostRe\":\"disk\\\\.yandex\\\\.\"},{\"env\":\"production\",\"hostRe\":\"yadi\\\\.sk\"},{\"env\":\"ON_PREM\",\"hostRe\":\".*\"}]",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    const level = 'fatal'",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    const cookieMatch = document.cookie.match(/(?:^|",
+    "\\s*)x-app-env=([^",
+    "]+)/)",
+    "",
+    ""
+  ],
+  [
+    "    const cookieEnv = cookieMatch",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        ? decodeURIComponent(cookieMatch[1]).trim()",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        : ''",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    let hostEnv = ''",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    for (let i = 0",
+    " i < envRules.length",
+    " i++) {",
+    "",
+    ""
+  ],
+  [
+    "        try {",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "            if (new RegExp(envRules[i].hostRe).test(location.hostname)) {",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "                hostEnv = envRules[i].env",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "                break",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "            }",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        } catch (_) {}",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    }",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    const env = cookieEnv || hostEnv || envDefault",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    if (env === 'ON_PREM') {",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        return",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    }",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    function encodeValue(str) {",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        return encodeURIComponent(str).replace(/\\*/g, '%2A')",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    }",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    const timestamp = Date.now()",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    const vars = {",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        '-project': project,",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        '-env': env,",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        '-page': page,",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        '-level': level,",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        '-msg': 'error-page-shown',",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        '-url': location.href,",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        '-ua': navigator.userAgent,",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        '-ts': timestamp,",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        '-silent': 'yes',",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    }",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    const varsStr = Object.entries(vars)",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        .filter(function (entry) {",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "            const v = entry[1]",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "            return v !== undefined && v !== null && v !== ''",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        })",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        .map(function (entry) {",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "            return entry[0] + '=' + encodeValue(String(entry[1]))",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        })",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        .join(',')",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    const body = '/path=690.2354/vars=' + varsStr + '/cts=' + timestamp + '/*'",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    if (navigator.sendBeacon) {",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        navigator.sendBeacon(clckUrl, body)",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    } else if (typeof fetch !== 'undefined') {",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "        fetch(clckUrl, { method: 'POST', body: body }).catch(function () {})",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "    }",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    "})()",
+    "</script></body></html>",
+    "",
+    "",
+    ""
+  ]
+]
